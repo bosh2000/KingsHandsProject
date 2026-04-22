@@ -1,0 +1,16 @@
+[
+  {
+    "HandID": 223456789,
+    "TableName": "Amsterdam #02",
+    "Players": ["Marta", "Olivia", "Noah"],
+    "Winners": ["Olivia"],
+    "WinAmount": "500,00$"
+  },
+  {
+    "HandID": 223456790,
+    "TableName": "Cairo #07",
+    "Players": ["Sam", "Leo", "Nina"],
+    "Winners": ["Nina"],
+    "WinAmount": "75,25$"
+  }
+]

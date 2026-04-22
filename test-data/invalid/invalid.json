@@ -1,0 +1,8 @@
+[
+  {
+    "HandID": 523456789,
+    "TableName": "Rome #09",
+    "Players": ["A", "B", "C"],
+    "Winners": ["A"],
+    "WinAmount": "50,00$"
+  },

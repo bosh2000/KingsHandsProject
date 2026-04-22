@@ -1,0 +1,30 @@
+[
+  {
+    "HandID": 423456789,
+    "TableName": "Madrid #03",
+    "Players": ["Ivan", "Petr", "Sergey"],
+    "Winners": ["Ivan"],
+    "WinAmount": "100,00$"
+  },
+  {
+    "HandID": null,
+    "TableName": "Madrid #03",
+    "Players": ["Bad", "Record"],
+    "Winners": ["Bad"],
+    "WinAmount": "0,00$"
+  },
+  {
+    "HandID": 423456790,
+    "TableName": "",
+    "Players": ["Another", "Bad", "Record"],
+    "Winners": ["Another"],
+    "WinAmount": "10,00$"
+  },
+  {
+    "HandID": 423456791,
+    "TableName": "Prague #05",
+    "Players": null,
+    "Winners": ["Kate"],
+    "WinAmount": "320,00$"
+  }
+]

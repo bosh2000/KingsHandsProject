@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace PokerLogViewer
+namespace KingsHandsProject
 {
     public partial class App : System.Windows.Application
     {
