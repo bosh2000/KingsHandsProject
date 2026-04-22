@@ -3,9 +3,190 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KingsHandsProject.Views"
+        xmlns:models="clr-namespace:KingsHandsProject.Models"
+        xmlns:infra="clr-namespace:KingsHandsProject.Infrastructure"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Poker Log Viewer"
+        Height="600"
+        Width="1100"
+        MinHeight="500"
+        MinWidth="900"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <infra:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+    </Window.Resources>
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="12" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="12" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0"
+                     Height="32"
+                     VerticalContentAlignment="Center"
+                     Text="{Binding SelectedFolderPath, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Button Grid.Column="2"
+                    Width="110"
+                    Height="32"
+                    Content="Обзор..."
+                    Command="{Binding BrowseFolderCommand}" />
+
+            <Button Grid.Column="4"
+                    Width="170"
+                    Height="32"
+                    Content="Начать сканирование"
+                    Command="{Binding StartScanCommand}" />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    BorderBrush="#D0D0D0"
+                    BorderThickness="1"
+                    Padding="8">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="Столы" />
+
+                    <Grid Grid.Row="2">
+                        <ListBox ItemsSource="{Binding TableNames}"
+                                 SelectedItem="{Binding SelectedTableName, Mode=TwoWay}" />
+
+                        <TextBlock Text="{Binding TablePlaceholderText}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="Gray"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   Visibility="{Binding HasTables, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2"
+                    BorderBrush="#D0D0D0"
+                    BorderThickness="1"
+                    Padding="8">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="Раздачи" />
+
+                    <Grid Grid.Row="2">
+                        <ListBox ItemsSource="{Binding HandItems}"
+                                 SelectedItem="{Binding SelectedHand, Mode=TwoWay}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type models:PokerHand}">
+                                    <TextBlock Text="{Binding HandID}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <TextBlock Text="{Binding HandPlaceholderText}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="Gray"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   Visibility="{Binding HasHandItems, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="4"
+                    BorderBrush="#D0D0D0"
+                    BorderThickness="1"
+                    Padding="8">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Text="Детали" />
+
+                    <Grid Grid.Row="2">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      Visibility="{Binding HasSelectedHand, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
+                                <TextBlock FontWeight="SemiBold" Text="Игроки:" />
+                                <TextBlock Margin="0,4,0,12"
+                                           Text="{Binding PlayersText}"
+                                           TextWrapping="Wrap" />
+
+                                <TextBlock FontWeight="SemiBold" Text="Победители:" />
+                                <TextBlock Margin="0,4,0,12"
+                                           Text="{Binding WinnersText}"
+                                           TextWrapping="Wrap" />
+
+                                <TextBlock FontWeight="SemiBold" Text="Сумма выигрыша:" />
+                                <TextBlock Margin="0,4,0,0"
+                                           Text="{Binding WinAmountText}"
+                                           TextWrapping="Wrap" />
+                            </StackPanel>
+                        </ScrollViewer>
+
+                        <TextBlock Text="{Binding DetailsPlaceholderText}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="Gray"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"
+                                   Visibility="{Binding HasSelectedHand, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="4"
+                Padding="8"
+                BorderBrush="#D0D0D0"
+                BorderThickness="1">
+            <TextBlock Text="{Binding StatusText}"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap" />
+        </Border>
     </Grid>
 </Window>

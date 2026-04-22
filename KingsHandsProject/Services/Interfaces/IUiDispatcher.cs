@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace KingsHandsProject.Services.Interfaces
 {
-    interface IUiDispatcher
+    public interface IUiDispatcher
     {
+        void Invoke(Action action);
+
+        void BeginInvoke(Action action);
     }
 }

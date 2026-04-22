@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace KingsHandsProject.Services.Interfaces
 {
-    interface IFolderDialogService
+    public interface IFolderDialogService
     {
+        string? SelectFolder();
     }
 }
