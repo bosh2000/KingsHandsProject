@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingsHandsProject.Models
+﻿namespace KingsHandsProject.Models
 {
     /// <summary>
     /// Одна запись из json.

@@ -8,7 +8,7 @@ namespace KingsHandsProject.Services
         {
             using var dialog = new System.Windows.Forms.FolderBrowserDialog
             {
-                Description = "Выберите папка с логами",
+                Description = "Выберите папку с логами",
                 UseDescriptionForTitle = true,
                 ShowNewFolderButton = false
             };

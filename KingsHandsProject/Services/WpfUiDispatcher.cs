@@ -1,5 +1,4 @@
 ﻿using KingsHandsProject.Services.Interfaces;
-using System.Windows;
 
 namespace KingsHandsProject.Services
 {

@@ -1,7 +1,6 @@
 ﻿using KingsHandsProject.Infrastructure;
 using KingsHandsProject.Models;
 using KingsHandsProject.Services.Interfaces;
-using KingsHandsProject.ViewModels;
 using System.Collections.ObjectModel;
 using System.IO;
 

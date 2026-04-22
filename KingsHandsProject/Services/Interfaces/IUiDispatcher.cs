@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KingsHandsProject.Services.Interfaces
+﻿namespace KingsHandsProject.Services.Interfaces
 {
     public interface IUiDispatcher
     {
